@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.greyblockgames.solaceutils.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "client": [
+    "CapeFeatureRendererMixin"
+  ]
+}
