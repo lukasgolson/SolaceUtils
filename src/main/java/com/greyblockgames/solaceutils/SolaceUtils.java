@@ -13,9 +13,7 @@ public class SolaceUtils implements ModInitializer {
     public static final String MODID = "solaceutils";
     public static final String NAME = "Solace Utils";
 
-    private static final Logger logger = LogManager.getLogger(NAME);
-
-    public static final Path mainDir = Paths.get(MODID);
+    public static final Logger logger = LogManager.getLogger(NAME);
 
 
     @Override
