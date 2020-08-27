@@ -17,6 +17,10 @@ dependencies {
             
     //Fabric api
     modImplementation "net.fabricmc.fabric-api:fabric-api:0.17.0+build.386-1.16.1"
+	
+	//gson
+	implementation 'com.google.code.gson:gson:2.8.6'
+	
 }
 
 processResources {
@@ -51,6 +55,16 @@ jar {
     from "LICENSE"
 }
 
+project.ext.credentials = new Properties()
+
+try {
+
+	project.ext.credentials.load(new FileReader(file('credentials.properties')))
+
+} catch (IOException ignore) {
+
+}
+
 // configure the maven publication
 publishing {
     publications {
@@ -71,3 +85,5 @@ publishing {
         // mavenLocal()
     }
 }
+
+apply from: 'setupRealMcAccount.gradle'

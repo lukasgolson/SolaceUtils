@@ -30,10 +30,10 @@ public abstract class PlayerListEntryMixin {
 
         SolaceUtils.logger.info(getProfile().getId());
 
-      if (getProfile().getId().toString().equals("f64eef3c-19b6-4943-b6d4-ad64f683bf9d")) {
-            Identifier cape = new Identifier(SolaceUtils.MODID, "textures/capes/lukas.png");
+
+        if (SolaceUtils.capeMap.containsKey(getProfile().getId().toString())) {
+            Identifier cape = new Identifier(SolaceUtils.MODID, "textures/capes/" + SolaceUtils.capeMap.get(getProfile().getId().toString()) + ".png");
             getTextures().put(MinecraftProfileTexture.Type.CAPE, cape);
-          
         }
     }
 

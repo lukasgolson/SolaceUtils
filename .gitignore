@@ -54,3 +54,6 @@ bin/
 
 run/
 
+# User authentication
+credentials.properties
+
