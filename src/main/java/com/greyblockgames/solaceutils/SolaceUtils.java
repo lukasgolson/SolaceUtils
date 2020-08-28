@@ -1,52 +1,51 @@
 package com.greyblockgames.solaceutils;
 
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.greyblockgames.solaceutils.data.CosmeticsData;
 import net.fabricmc.api.ModInitializer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.io.IOException;
+import java.net.URL;
+import java.nio.charset.Charset;
+import java.util.Scanner;
 
 public class SolaceUtils implements ModInitializer {
 
     public static final String MODID = "solaceutils";
     public static final String NAME = "Solace Utils";
     public static final Logger logger = LogManager.getLogger(NAME);
-    private static final String capesConfig = "";
+    private static final String capesConfig = "https://pastebin.com/raw/GqUDj7Hr";
+    public static CosmeticsData cosmeticsData = new CosmeticsData();
 
-    public static CosmeticsData cosmeticsData;
+    RuntimeResourcePack
 
+    Gson gson = new GsonBuilder().setVersion(1).serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES).create();
+
+    public static String URLReader(URL url, Charset encoding) throws IOException {
+        String content;
+        try (Scanner scanner = new Scanner(url.openStream(), String.valueOf(encoding))) {
+            content = scanner.useDelimiter("\\A").next();
+        }
+        return content;
+    }
 
     @Override
     public void onInitialize() {
-        logger.info(NAME + " has initialized.");
 
-        cosmeticsData = new CosmeticsData();
+        try {
+            String t = URLReader(new URL(capesConfig), Charset.defaultCharset());
 
-        cosmeticsData.capeOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", "lukas");
-        cosmeticsData.particleOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", "lukas");
-        cosmeticsData.EarOwners.add("f64eef3c-19b6-4943-b6d4-ad64f683bf9d");
-
-
-
-        Gson gson = new Gson();
-        //String t = gson.toJson("test");
-        String t = gson.toJson(cosmeticsData);
-        logger.info(t.toString());
-        logger.info("test");
+        } catch (IOException e) {
+            logger.warn("Unable to get cosmetic ownership list...");
+            logger.warn(e);
+        }
 
 
     }
 
 
-    private void GetCapes() {
-       /* URL url = new URL(capesConfig);
-        URLConnection request = url.openConnection();
-        request.connect();
-
-        // Convert to a JSON object to print data
-        JsonParser jp = new JsonParser(); //from gson
-        JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent())); //Convert the input stream to a json element
-        JsonObject rootobj = root.getAsJsonObject(); //May be an array, may be an object.*/
-
-
-    }
 }

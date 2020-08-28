@@ -28,11 +28,9 @@ public abstract class PlayerListEntryMixin {
     @Inject(method = "getCapeTexture", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/PlayerListEntry;loadTextures()V"))
     public void injectIntoTextures(CallbackInfoReturnable<Identifier> cir) {
 
-        SolaceUtils.logger.info(getProfile().getId());
-
 
         if (SolaceUtils.cosmeticsData.capeOwners.containsKey(getProfile().getId().toString())) {
-            Identifier cape = new Identifier(SolaceUtils.MODID, "textures/capes/" + SolaceUtils.cosmeticsData.capeOwners.get(getProfile().getId().toString()) + ".png");
+            Identifier cape = new Identifier(SolaceUtils.MODID, "textures/capes/" + SolaceUtils.cosmeticsData.capeOwners.get(getProfile().getId().toString()) + ".png" );
             getTextures().put(MinecraftProfileTexture.Type.CAPE, cape);
         }
     }
