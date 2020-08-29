@@ -27,6 +27,7 @@ dependencies {
 	
 	//ARRP
 	modImplementation group: 'net.devtech', name: 'arrp', version: '0.2.6'
+	include group: 'net.devtech', name: 'arrp', version: '0.2.6'
 	
 	
 	//gson
