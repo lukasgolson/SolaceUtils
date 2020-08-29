@@ -2,13 +2,20 @@ plugins {
     id 'fabric-loom' version '0.5-SNAPSHOT'
     id 'maven-publish'
 }
-
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
 archivesBaseName = project.archives_base_name
 version = project.mod_version
 group = project.maven_group
+
+
+repositories {
+	maven {
+		url = 'https://raw.githubusercontent.com/Devan-Kerman/Devan-Repo/master/'
+	}
+}
+
 
 dependencies {
     minecraft "com.mojang:minecraft:1.16.1"
@@ -17,6 +24,10 @@ dependencies {
             
     //Fabric api
     modImplementation "net.fabricmc.fabric-api:fabric-api:0.17.0+build.386-1.16.1"
+	
+	//ARRP
+	modImplementation group: 'net.devtech', name: 'arrp', version: '0.2.6'
+	
 	
 	//gson
 	implementation 'com.google.code.gson:gson:2.8.6'

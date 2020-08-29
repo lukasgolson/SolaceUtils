@@ -1,8 +1,8 @@
 package com.greyblockgames.solaceutils.data;
 
 public class CapeData {
-    private String url;
-    private int version;
+    private final String url;
+    private final int version;
 
     public CapeData(String URL, int Version){
         url = URL;

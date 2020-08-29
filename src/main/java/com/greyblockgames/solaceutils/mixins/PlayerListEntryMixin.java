@@ -30,8 +30,8 @@ public abstract class PlayerListEntryMixin {
 
 
         if (SolaceUtils.cosmeticsData.capeOwners.containsKey(getProfile().getId().toString())) {
-            Identifier cape = new Identifier(SolaceUtils.MODID, "textures/capes/" + SolaceUtils.cosmeticsData.capeOwners.get(getProfile().getId().toString()) + ".png" );
-            getTextures().put(MinecraftProfileTexture.Type.CAPE, cape);
+            Identifier capeIdentifier = new Identifier(SolaceUtils.MODID, "textures/"+SolaceUtils.cosmeticsData.capeOwners.get(getProfile().getId().toString())+".png");
+            getTextures().put(MinecraftProfileTexture.Type.CAPE, capeIdentifier);
         }
     }
 
