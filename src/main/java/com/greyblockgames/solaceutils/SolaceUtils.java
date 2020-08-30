@@ -17,9 +17,9 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -33,7 +33,6 @@ public class SolaceUtils implements ModInitializer {
     private static final String capesConfig = "https://solacesmp.s3-us-west-2.amazonaws.com/config.json";
     public static CosmeticsData cosmeticsData = new CosmeticsData();
     Gson gson = new GsonBuilder().setVersion(1).serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES).create();
-
 
 
     @Override
@@ -51,12 +50,11 @@ public class SolaceUtils implements ModInitializer {
             downloadCapes();
 
         } else {
-            cosmeticsData.capeList.put("shrek", new CapeData("https://solacesmp.s3-us-west-2.amazonaws.com/shrek.png", 0));
             cosmeticsData.capeList.put("lukas", new CapeData("https://solacesmp.s3-us-west-2.amazonaws.com/lukas.png", 0));
 
-            cosmeticsData.capeOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", "shrek");
+            cosmeticsData.capeOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", "lukas");
             logger.info(gson.toJson(cosmeticsData));
-
+            downloadCapes();
         }
     }
 
@@ -67,7 +65,7 @@ public class SolaceUtils implements ModInitializer {
 
             try {
                 URL url = new URL(entry.getValue().getUrl());
-                RESOURCE_PACK.addTexture(new Identifier(MODID, entry.getKey()), ImageIO.read(url));
+                RESOURCE_PACK.addTexture(new Identifier(MODID, "capes/" + entry.getKey().toLowerCase(Locale.ROOT).replaceAll(" ", "_")), ImageIO.read(url));
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -77,6 +75,7 @@ public class SolaceUtils implements ModInitializer {
             RRPCallback.EVENT.register(a -> a.add(RESOURCE_PACK));
         }
     }
+
 
     private String URLReader(URL url, Charset encoding) throws IOException {
         String content;
