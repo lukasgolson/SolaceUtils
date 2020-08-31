@@ -6,7 +6,6 @@ import com.mojang.authlib.minecraft.MinecraftProfileTexture;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.network.PlayerListEntry;
-import net.minecraft.network.packet.s2c.play.PlayerListS2CPacket;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
@@ -15,7 +14,6 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.gen.Accessor;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Map;
@@ -23,7 +21,8 @@ import java.util.Map;
 
 @Mixin(PlayerListEntry.class)
 public abstract class PlayerListEntryMixin {
-    @Shadow private @Nullable Text displayName;
+    @Shadow
+    private @Nullable Text displayName;
 
     @Accessor
     public abstract Map<MinecraftProfileTexture.Type, Identifier> getTextures();
