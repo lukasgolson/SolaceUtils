@@ -3,6 +3,7 @@
   "package": "com.greyblockgames.solaceutils.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "PlayerEntityRendererInvoker"
   ],
   "injectors": {
     "defaultRequire": 1
