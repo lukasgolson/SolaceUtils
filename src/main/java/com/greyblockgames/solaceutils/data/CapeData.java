@@ -4,7 +4,7 @@ public class CapeData {
     private final String url;
     private final int version;
 
-    public CapeData(String URL, int Version){
+    public CapeData(String URL, int Version) {
         url = URL;
         version = Version;
     }

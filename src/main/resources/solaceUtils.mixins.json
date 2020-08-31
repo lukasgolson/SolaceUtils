@@ -9,6 +9,7 @@
   },
   "client": [
     "CapeFeatureRendererMixin",
+    "Deadmau5FeatureRendererMixin",
     "PlayerListEntryMixin"
   ]
 }

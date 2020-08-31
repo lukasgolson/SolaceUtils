@@ -35,6 +35,7 @@ public class SolaceUtils implements ModInitializer {
     Gson gson = new GsonBuilder().setVersion(1).serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES).create();
 
 
+
     @Override
     public void onInitialize() {
 
@@ -47,11 +48,13 @@ public class SolaceUtils implements ModInitializer {
                 logger.warn("Unable to get cosmetic ownership list...");
                 logger.warn(e);
             }
+
             downloadCapes();
 
         } else {
             cosmeticsData.capeList.put("lukas", new CapeData("https://solacesmp.s3-us-west-2.amazonaws.com/lukas.png", 0));
 
+            cosmeticsData.EarOwners.add("f64eef3c-19b6-4943-b6d4-ad64f683bf9d");
             cosmeticsData.capeOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", "lukas");
             logger.info(gson.toJson(cosmeticsData));
             downloadCapes();
