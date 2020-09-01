@@ -2,15 +2,13 @@
   "required": true,
   "package": "com.greyblockgames.solaceutils.mixins",
   "compatibilityLevel": "JAVA_8",
-  "mixins": [
-    "PlayerEntityRendererInvoker"
-  ],
   "injectors": {
     "defaultRequire": 1
   },
   "client": [
     "CapeFeatureRendererMixin",
     "Deadmau5FeatureRendererMixin",
-    "PlayerListEntryMixin"
+    "PlayerListEntryMixin",
+    "PlayerEntityRendererMixin"
   ]
 }

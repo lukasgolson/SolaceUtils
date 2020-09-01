@@ -30,7 +30,8 @@ public class SolaceUtils implements ModInitializer {
     public static final RuntimeResourcePack RESOURCE_PACK = RuntimeResourcePack.create(MODID + ":resources");
     public static final Path mainDir = Paths.get(MODID);
     public static final Logger logger = LogManager.getLogger(NAME);
-    private static final String capesConfig = "https://solacesmp.s3-us-west-2.amazonaws.com/config.json";
+    //private static final String capesConfig = "https://solacesmp.s3-us-west-2.amazonaws.com/config.json";
+    private static final String capesConfig = "";
     public static CosmeticsData cosmeticsData = new CosmeticsData();
     Gson gson = new GsonBuilder().setVersion(1).serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES).create();
 
