@@ -9,6 +9,7 @@
     "CapeFeatureRendererMixin",
     "Deadmau5FeatureRendererMixin",
     "PlayerListEntryMixin",
-    "PlayerEntityRendererMixin"
+    "PlayerEntityRendererMixin",
+    "AbstractClientPlayerEntityMixin"
   ]
 }

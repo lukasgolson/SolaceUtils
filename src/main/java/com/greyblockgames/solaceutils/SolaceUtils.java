@@ -5,9 +5,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.greyblockgames.solaceutils.data.CapeData;
 import com.greyblockgames.solaceutils.data.CosmeticsData;
+import com.greyblockgames.solaceutils.data.UnusualEffectData;
 import net.devtech.arrp.api.RRPCallback;
 import net.devtech.arrp.api.RuntimeResourcePack;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -57,6 +59,7 @@ public class SolaceUtils implements ModInitializer {
 
             cosmeticsData.EarOwners.add("f64eef3c-19b6-4943-b6d4-ad64f683bf9d");
             cosmeticsData.capeOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", "lukas");
+            cosmeticsData.unusualOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", new UnusualEffectData(60, 0.8, ParticleTypes.ENCHANT));
             logger.info(gson.toJson(cosmeticsData));
             downloadCapes();
         }
