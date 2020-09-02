@@ -1,7 +1,7 @@
 package com.greyblockgames.solaceutils.render.entity.feature;
 
 
-import com.greyblockgames.solaceutils.SolaceUtils;
+import com.greyblockgames.solaceutils.Access.AbstractClientPlayerEntityAccess;
 import com.greyblockgames.solaceutils.data.UnusualEffectData;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -27,16 +27,15 @@ public class PlayerUnusualParticlesFeature extends FeatureRenderer<AbstractClien
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, AbstractClientPlayerEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
 
 
-        if (SolaceUtils.cosmeticsData.unusualOwners.containsKey(entity.getUuid().toString())) {
+        if (((AbstractClientPlayerEntityAccess) entity).GBG_hasUnusualEffect()) {
             counter++;
             if (counter >= counterRequirement) {
                 counter = 0;
-                UnusualEffectData data = SolaceUtils.cosmeticsData.unusualOwners.get(entity.getUuid().toString());
-                entity.clientWorld.addParticle(data.getParticleEffect(), entity.getParticleX(0.75D), entity.getBodyY(data.getHeightScale()), entity.getParticleZ(0.75D), 0.0D, 0.0D, 0.0D);
-
-
+                UnusualEffectData data = ((AbstractClientPlayerEntityAccess) entity).GBG_getUnusualEffect();
+                entity.clientWorld.addParticle(data.getParticleEffect(), entity.getParticleX(0.75D), entity.getBodyY(data.getHeightScale()), entity.getParticleZ(0.75D), 0.0D, 1.0D, 0.0D);
                 if (!counterSet) {
                     counterRequirement = data.getSpawnRate();
+                    counterSet = true;
                 }
             }
         }

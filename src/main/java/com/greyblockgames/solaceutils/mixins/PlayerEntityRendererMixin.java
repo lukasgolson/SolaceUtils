@@ -26,16 +26,12 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
         this.addFeature(new PlayerUnusualParticlesFeature(this));
 
 
-       // for(int i = 0; i < 2; ++i) {
-      //  this.world.addParticle(ParticleTypes.LARGE_SMOKE, this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), 0.0D, 0.0D, 0.0D);
-       // }
-
-
-
+        // for(int i = 0; i < 2; ++i) {
+        //  this.world.addParticle(ParticleTypes.LARGE_SMOKE, this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), 0.0D, 0.0D, 0.0D);
+        // }
 
 
     }
-
 
 
 }

@@ -8,7 +8,7 @@ public class UnusualEffectData {
     private ParticleEffect particleEffect;
 
 
-    public UnusualEffectData(int spawnRate, double heightScale, ParticleEffect particleEffect){
+    public UnusualEffectData(int spawnRate, double heightScale, ParticleEffect particleEffect) {
         this.spawnRate = spawnRate;
         this.heightScale = heightScale;
         this.particleEffect = particleEffect;

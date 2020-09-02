@@ -38,7 +38,6 @@ public class SolaceUtils implements ModInitializer {
     Gson gson = new GsonBuilder().setVersion(1).serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES).create();
 
 
-
     @Override
     public void onInitialize() {
 
@@ -59,7 +58,7 @@ public class SolaceUtils implements ModInitializer {
 
             cosmeticsData.EarOwners.add("f64eef3c-19b6-4943-b6d4-ad64f683bf9d");
             cosmeticsData.capeOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", "lukas");
-            cosmeticsData.unusualOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", new UnusualEffectData(60, 0.8, ParticleTypes.ENCHANT));
+            cosmeticsData.unusualOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", new UnusualEffectData(20, 0.8, ParticleTypes.ENCHANT));
             logger.info(gson.toJson(cosmeticsData));
             downloadCapes();
         }
