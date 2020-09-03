@@ -7,6 +7,7 @@ import com.greyblockgames.solaceutils.data.UnusualEffectData;
 import net.devtech.arrp.api.RRPCallback;
 import net.devtech.arrp.api.RuntimeResourcePack;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.client.util.math.Vector3d;
 import net.minecraft.particle.DefaultParticleType;
 import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;
@@ -39,6 +40,12 @@ public class SolaceUtils implements ModInitializer {
         JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty("rate", src.getSpawnRate());
         jsonObject.addProperty("height", src.getHeightScale());
+        jsonObject.addProperty("radius", src.getRadius());
+        jsonObject.addProperty("velX", src.getVelocity().x);
+        jsonObject.addProperty("velY", src.getVelocity().y);
+        jsonObject.addProperty("velZ", src.getVelocity().z);
+
+
         jsonObject.addProperty("particleType", Registry.PARTICLE_TYPE.getId(src.getParticleEffect().getType()).toString());
         return jsonObject;
     };
@@ -49,10 +56,15 @@ public class SolaceUtils implements ModInitializer {
             JsonObject jsonObject = json.getAsJsonObject();
             int rate = jsonObject.get("rate").getAsInt();
             double height = jsonObject.get("height").getAsDouble();
-            String IDParts[] = jsonObject.get("particleType").getAsString().split(":", 2);
+            double radius = jsonObject.get("radius").getAsDouble();
+            double vecx = jsonObject.get("velX").getAsDouble();
+            double vecy = jsonObject.get("velY").getAsDouble();
+            double vecz = jsonObject.get("velZ").getAsDouble();
+
+            String[] IDParts = jsonObject.get("particleType").getAsString().split(":", 2);
             ParticleType effect = Registry.PARTICLE_TYPE.get(new Identifier(IDParts[0], IDParts[1]));
 
-            return new UnusualEffectData(rate, height, (DefaultParticleType) effect);
+            return new UnusualEffectData(rate, height, radius, new Vector3d(vecx, vecy, vecz), (DefaultParticleType) effect);
         }
     };
 
@@ -80,7 +92,7 @@ public class SolaceUtils implements ModInitializer {
 
             cosmeticsData.EarOwners.add("f64eef3c-19b6-4943-b6d4-ad64f683bf9d");
             cosmeticsData.capeOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", "lukas");
-            cosmeticsData.unusualOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", new UnusualEffectData(20, 0.8, ParticleTypes.ENCHANT));
+            cosmeticsData.unusualOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", new UnusualEffectData(20, 0.8, 0.75, new Vector3d(0, 1, 0), ParticleTypes.ENCHANT));
 
             // Registry.PARTICLE_TYPE.getId()
 
