@@ -32,7 +32,9 @@ public class PlayerUnusualParticlesFeature extends FeatureRenderer<AbstractClien
             if (counter >= counterRequirement) {
                 counter = 0;
                 UnusualEffectData data = ((AbstractClientPlayerEntityAccess) entity).GBG_getUnusualEffect();
+
                 entity.clientWorld.addParticle(data.getParticleEffect(), entity.getParticleX(0.75D), entity.getBodyY(data.getHeightScale()), entity.getParticleZ(0.75D), 0.0D, 1.0D, 0.0D);
+
                 if (!counterSet) {
                     counterRequirement = data.getSpawnRate();
                     counterSet = true;
