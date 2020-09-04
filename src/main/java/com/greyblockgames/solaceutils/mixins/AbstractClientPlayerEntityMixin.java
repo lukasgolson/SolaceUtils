@@ -19,8 +19,8 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity imple
 
     private UnusualEffectData GBG_unusualEffectData = null;
 
-    public AbstractClientPlayerEntityMixin(World world, BlockPos blockPos, GameProfile gameProfile) {
-        super(world, blockPos, gameProfile);
+    public AbstractClientPlayerEntityMixin(World world, BlockPos pos, float yaw, GameProfile profile) {
+        super(world, pos, yaw, profile);
     }
 
 
