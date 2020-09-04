@@ -32,8 +32,8 @@ public class SolaceUtils implements ModInitializer {
     public static final String NAME = "Solace Utils";
     public static final RuntimeResourcePack RESOURCE_PACK = RuntimeResourcePack.create(MODID + ":resources");
     public static final Logger logger = LogManager.getLogger(NAME);
-    //private static final String capesConfig = "https://solacesmp.s3-us-west-2.amazonaws.com/config.json";
-    private static final String capesConfig = "";
+    private static final String capesConfig = "https://solacesmp.s3-us-west-2.amazonaws.com/configv2.json";
+    //  private static final String capesConfig = "";
     public static CosmeticsData cosmeticsData = new CosmeticsData();
 
     JsonSerializer<UnusualEffectData> unusualEffectSerializer = (src, typeOfSrc, context) -> {
@@ -88,11 +88,11 @@ public class SolaceUtils implements ModInitializer {
             downloadCapes();
 
         } else {
-            cosmeticsData.capeList.put("lukas", new CapeData("https://solacesmp.s3-us-west-2.amazonaws.com/lukas.png", 0));
+            cosmeticsData.capeList.put("lukas", new CapeData("https://solacesmp.s3-us-west-2.amazonaws.com/capes/lukas.png", 0));
 
             cosmeticsData.EarOwners.add("f64eef3c-19b6-4943-b6d4-ad64f683bf9d");
             cosmeticsData.capeOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", "lukas");
-            cosmeticsData.unusualOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", new UnusualEffectData(20, 0.8, 0.75, new Vector3d(0, 1, 0), ParticleTypes.ENCHANT));
+            cosmeticsData.unusualOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", new UnusualEffectData(15, 0.9, 1, new Vector3d(0, 0.05, 0), ParticleTypes.FLAME));
 
             // Registry.PARTICLE_TYPE.getId()
 

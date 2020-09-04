@@ -6,10 +6,10 @@
     "defaultRequire": 1
   },
   "client": [
+    "AbstractClientPlayerEntityMixin",
     "CapeFeatureRendererMixin",
     "Deadmau5FeatureRendererMixin",
-    "PlayerListEntryMixin",
     "PlayerEntityRendererMixin",
-    "AbstractClientPlayerEntityMixin"
+    "PlayerListEntryMixin"
   ]
 }

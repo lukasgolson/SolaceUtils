@@ -4,11 +4,11 @@ import net.minecraft.client.util.math.Vector3d;
 import net.minecraft.particle.ParticleEffect;
 
 public class UnusualEffectData {
-    private int spawnRate;
-    private double heightScale;
-    private double radius;
-    private Vector3d vel;
-    private ParticleEffect particleEffect;
+    private final int spawnRate;
+    private final double heightScale;
+    private final double radius;
+    private final Vector3d vel;
+    private final ParticleEffect particleEffect;
 
 
     public UnusualEffectData(int spawnRate, double heightScale, double radius, Vector3d velocity, ParticleEffect particleEffect) {
