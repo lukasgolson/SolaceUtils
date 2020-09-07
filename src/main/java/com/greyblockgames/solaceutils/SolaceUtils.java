@@ -26,47 +26,20 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Scanner;
 
+import static com.greyblockgames.solaceutils.data.GSONSerializers.unusualEffectDeserializer;
+import static com.greyblockgames.solaceutils.data.GSONSerializers.unusualEffectSerializer;
+
 public class SolaceUtils implements ModInitializer {
 
     public static final String MODID = "solaceutils";
     public static final String NAME = "Solace Utils";
     public static final RuntimeResourcePack RESOURCE_PACK = RuntimeResourcePack.create(MODID + ":resources");
     public static final Logger logger = LogManager.getLogger(NAME);
-    private static final String capesConfig = "https://solacesmp.s3-us-west-2.amazonaws.com/configv2.json";
-    //  private static final String capesConfig = "";
+    //private static final String capesConfig = "https://solacesmp.s3-us-west-2.amazonaws.com/configv2.json";
+    private static final String capesConfig = "";
     public static CosmeticsData cosmeticsData = new CosmeticsData();
 
-    JsonSerializer<UnusualEffectData> unusualEffectSerializer = (src, typeOfSrc, context) -> {
-        JsonObject jsonObject = new JsonObject();
-        jsonObject.addProperty("rate", src.getSpawnRate());
-        jsonObject.addProperty("height", src.getHeightScale());
-        jsonObject.addProperty("radius", src.getRadius());
-        jsonObject.addProperty("velX", src.getVelocity().x);
-        jsonObject.addProperty("velY", src.getVelocity().y);
-        jsonObject.addProperty("velZ", src.getVelocity().z);
 
-
-        jsonObject.addProperty("particleType", Registry.PARTICLE_TYPE.getId(src.getParticleEffect().getType()).toString());
-        return jsonObject;
-    };
-
-    JsonDeserializer<UnusualEffectData> unusualEffectDeserializer = new JsonDeserializer<UnusualEffectData>() {
-        @Override
-        public UnusualEffectData deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
-            JsonObject jsonObject = json.getAsJsonObject();
-            int rate = jsonObject.get("rate").getAsInt();
-            double height = jsonObject.get("height").getAsDouble();
-            double radius = jsonObject.get("radius").getAsDouble();
-            double vecx = jsonObject.get("velX").getAsDouble();
-            double vecy = jsonObject.get("velY").getAsDouble();
-            double vecz = jsonObject.get("velZ").getAsDouble();
-
-            String[] IDParts = jsonObject.get("particleType").getAsString().split(":", 2);
-            ParticleType effect = Registry.PARTICLE_TYPE.get(new Identifier(IDParts[0], IDParts[1]));
-
-            return new UnusualEffectData(rate, height, radius, new Vector3d(vecx, vecy, vecz), (DefaultParticleType) effect);
-        }
-    };
 
 
     Gson gson = new GsonBuilder().setVersion(1).serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES).registerTypeAdapter(UnusualEffectData.class, unusualEffectSerializer).registerTypeAdapter(UnusualEffectData.class, unusualEffectDeserializer).create();
@@ -91,7 +64,7 @@ public class SolaceUtils implements ModInitializer {
             cosmeticsData.capeList.put("lukas", new CapeData("https://solacesmp.s3-us-west-2.amazonaws.com/capes/lukas.png", 0));
 
             cosmeticsData.EarOwners.add("f64eef3c-19b6-4943-b6d4-ad64f683bf9d");
-            cosmeticsData.capeOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", "lukas");
+            cosmeticsData.capeOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", "ashcape");
             cosmeticsData.unusualOwners.put("f64eef3c-19b6-4943-b6d4-ad64f683bf9d", new UnusualEffectData(15, 0.9, 1, new Vector3d(0, 0.05, 0), ParticleTypes.FLAME));
 
             // Registry.PARTICLE_TYPE.getId()
