@@ -35,8 +35,8 @@ public class SolaceUtils implements ModInitializer {
     public static final String NAME = "Solace Utils";
     public static final RuntimeResourcePack RESOURCE_PACK = RuntimeResourcePack.create(MODID + ":resources");
     public static final Logger logger = LogManager.getLogger(NAME);
-    //private static final String capesConfig = "https://solacesmp.s3-us-west-2.amazonaws.com/configv2.json";
-    private static final String capesConfig = "";
+    private static final String capesConfig = "https://solacesmp.s3-us-west-2.amazonaws.com/configv2.json";
+    //private static final String capesConfig = "";
     public static CosmeticsData cosmeticsData = new CosmeticsData();
 
 
