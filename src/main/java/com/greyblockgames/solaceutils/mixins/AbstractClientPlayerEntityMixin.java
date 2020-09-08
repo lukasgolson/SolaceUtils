@@ -50,9 +50,15 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity imple
         if (SolaceUtils.cosmeticsData.EarOwners.contains(getUuid().toString())) {
             GBG_mouseEars = true;
         }
+    }
+
+    @Inject(method = "Lnet/minecraft/entity/player/PlayerEntity;tickMovement()V", at = @At(value = "RETURN"))
+    @Override
+    public void tickMovement() {
+        super.tickMovement();
+
+
 
 
     }
-
-
 }
