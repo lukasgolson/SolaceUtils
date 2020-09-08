@@ -1,6 +1,7 @@
 package com.greyblockgames.solaceutils.mixins;
 
-import com.greyblockgames.solaceutils.render.entity.feature.PlayerUnusualParticlesFeature;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
@@ -20,16 +21,11 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
         super(dispatcher, model, scale);
     }
 
+    @Environment(EnvType.CLIENT)
     @Inject(method = "<init>(Lnet/minecraft/client/render/entity/EntityRenderDispatcher;Z)V", at = @At(value = "RETURN"))
     private void mixin(EntityRenderDispatcher dispatcher, boolean bl, CallbackInfo ci) {
 
-        this.addFeature(new PlayerUnusualParticlesFeature(this));
-
-
-        // for(int i = 0; i < 2; ++i) {
-        //  this.world.addParticle(ParticleTypes.LARGE_SMOKE, this.getParticleX(0.5D), this.getRandomBodyY(), this.getParticleZ(0.5D), 0.0D, 0.0D, 0.0D);
-        // }
-
+        //   this.addFeature(new PlayerUnusualParticlesFeature(this));
 
     }
 

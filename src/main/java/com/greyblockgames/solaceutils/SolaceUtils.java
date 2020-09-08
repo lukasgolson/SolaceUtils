@@ -1,6 +1,8 @@
 package com.greyblockgames.solaceutils;
 
-import com.google.gson.*;
+import com.google.gson.FieldNamingPolicy;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.greyblockgames.solaceutils.data.CapeData;
 import com.greyblockgames.solaceutils.data.CosmeticsData;
 import com.greyblockgames.solaceutils.data.UnusualEffectData;
@@ -8,17 +10,13 @@ import net.devtech.arrp.api.RRPCallback;
 import net.devtech.arrp.api.RuntimeResourcePack;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.util.math.Vector3d;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.imageio.ImageIO;
 import java.io.IOException;
-import java.lang.reflect.Type;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
@@ -38,8 +36,6 @@ public class SolaceUtils implements ModInitializer {
     private static final String capesConfig = "https://solacesmp.s3-us-west-2.amazonaws.com/configv2.json";
     //private static final String capesConfig = "";
     public static CosmeticsData cosmeticsData = new CosmeticsData();
-
-
 
 
     Gson gson = new GsonBuilder().setVersion(1).serializeNulls().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES).registerTypeAdapter(UnusualEffectData.class, unusualEffectSerializer).registerTypeAdapter(UnusualEffectData.class, unusualEffectDeserializer).create();

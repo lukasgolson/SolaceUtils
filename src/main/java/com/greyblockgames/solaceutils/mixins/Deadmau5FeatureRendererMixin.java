@@ -1,6 +1,6 @@
 package com.greyblockgames.solaceutils.mixins;
 
-import com.greyblockgames.solaceutils.SolaceUtils;
+import com.greyblockgames.solaceutils.Access.PlayerEntityAccess;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.feature.Deadmau5FeatureRenderer;
@@ -24,12 +24,9 @@ public abstract class Deadmau5FeatureRendererMixin {
     @Inject(method = "render", at = @At(value = "HEAD"), cancellable = true)
     public void isCorrectPlayer(MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i, AbstractClientPlayerEntity abstractClientPlayerEntity,
                                 float f, float g, float h, float j, float k, float l, CallbackInfo ci) {
-        if (!SolaceUtils.cosmeticsData.EarOwners.contains(abstractClientPlayerEntity.getUuidAsString())) {
+        if (!((PlayerEntityAccess) abstractClientPlayerEntity).GBG_hasMouseEars()) {
             ci.cancel();
         }
-
     }
-
-
 }
 

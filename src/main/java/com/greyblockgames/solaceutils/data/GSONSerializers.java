@@ -37,7 +37,7 @@ public class GSONSerializers {
             double vecz = jsonObject.get("velZ").getAsDouble();
 
             String[] IDParts = jsonObject.get("particleType").getAsString().split(":", 2);
-            ParticleType effect = Registry.PARTICLE_TYPE.get(new Identifier(IDParts[0], IDParts[1]));
+            ParticleType<? extends net.minecraft.particle.ParticleEffect> effect = Registry.PARTICLE_TYPE.get(new Identifier(IDParts[0], IDParts[1]));
 
             return new UnusualEffectData(rate, height, radius, new Vector3d(vecx, vecy, vecz), (DefaultParticleType) effect);
         }
