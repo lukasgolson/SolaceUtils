@@ -7,6 +7,7 @@ import com.mojang.authlib.GameProfile;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -34,8 +35,13 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity imple
         return GBG_unusualEffectData;
     }
 
+
+
+
     @Inject(method = "<init>", at = @At(value = "RETURN"))
     private void injectIntoInit(ClientWorld world, GameProfile profile, CallbackInfo ci) {
+
+
         if (SolaceUtils.cosmeticsData.unusualOwners.containsKey(getUuid().toString())) {
             GBG_unusualEffectData = SolaceUtils.cosmeticsData.unusualOwners.get(getUuid().toString());
         }
