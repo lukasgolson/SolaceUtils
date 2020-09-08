@@ -12,6 +12,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -19,13 +20,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEntityAccess {
 
+    @Unique
+    int counter = 60;
+    @Unique
+    int counterRequirement = counter;
+    @Unique
+    boolean counterSet = false;
     private UnusualEffectData GBG_unusualEffectData = null;
     private Boolean GBG_mouseEars = false;
 
     protected PlayerEntityMixin(EntityType<? extends LivingEntity> entityType, World world) {
         super(entityType, world);
     }
-
 
     @Override
     public boolean GBG_hasUnusualEffect() {
@@ -58,8 +64,21 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
     @Environment(EnvType.CLIENT)
     @Inject(method = "tickMovement()V", at = @At(value = "RETURN"))
     public void tickMovement(CallbackInfo ci) {
-        UnusualEffectData data = GBG_unusualEffectData;
-        this.world.addParticle(data.getParticleEffect(), this.getParticleX(data.getRadius()), this.getBodyY(data.getHeightScale()), this.getParticleZ(data.getRadius()), data.getVelocity().x, data.getVelocity().y, data.getVelocity().z);
 
+        if (GBG_unusualEffectData != null) {
+            counter++;
+
+            if (counter >= counterRequirement) {
+                counter = 0;
+                UnusualEffectData data = GBG_unusualEffectData;
+
+                this.world.addParticle(data.getParticleEffect(), this.getParticleX(data.getRadius()), this.getBodyY(data.getHeightScale()), this.getParticleZ(data.getRadius()), data.getVelocity().x, data.getVelocity().y, data.getVelocity().z);
+
+                if (!counterSet) {
+                    counterRequirement = data.getSpawnRate();
+                    counterSet = true;
+                }
+            }
+        }
     }
 }
