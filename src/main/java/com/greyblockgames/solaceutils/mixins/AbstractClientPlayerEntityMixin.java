@@ -7,7 +7,6 @@ import com.mojang.authlib.GameProfile;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity implements AbstractClientPlayerEntityAccess {
 
     private UnusualEffectData GBG_unusualEffectData = null;
+    private Boolean GBG_mouseEars = false;
 
     public AbstractClientPlayerEntityMixin(World world, BlockPos pos, float yaw, GameProfile profile) {
         super(world, pos, yaw, profile);
@@ -35,16 +35,23 @@ public abstract class AbstractClientPlayerEntityMixin extends PlayerEntity imple
         return GBG_unusualEffectData;
     }
 
-
-
+    @Override
+    public boolean GBG_hasMouseEars() {
+        return GBG_mouseEars;
+    }
 
     @Inject(method = "<init>", at = @At(value = "RETURN"))
     private void injectIntoInit(ClientWorld world, GameProfile profile, CallbackInfo ci) {
 
-
         if (SolaceUtils.cosmeticsData.unusualOwners.containsKey(getUuid().toString())) {
             GBG_unusualEffectData = SolaceUtils.cosmeticsData.unusualOwners.get(getUuid().toString());
         }
+
+        if (SolaceUtils.cosmeticsData.EarOwners.contains(getUuid().toString())) {
+            GBG_mouseEars = true;
+        }
+
+
     }
 
 

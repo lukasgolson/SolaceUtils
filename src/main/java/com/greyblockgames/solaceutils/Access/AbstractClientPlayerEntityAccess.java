@@ -6,4 +6,6 @@ public interface AbstractClientPlayerEntityAccess {
     boolean GBG_hasUnusualEffect();
 
     UnusualEffectData GBG_getUnusualEffect();
+
+    boolean GBG_hasMouseEars();
 }
