@@ -1,6 +1,5 @@
 package com.greyblockgames.solaceutils.mixins;
 
-import com.greyblockgames.solaceutils.render.entity.feature.PlayerUnusualParticlesFeature;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
@@ -26,7 +25,7 @@ public abstract class PlayerEntityRendererMixin extends LivingEntityRenderer<Abs
     @Inject(method = "<init>(Lnet/minecraft/client/render/entity/EntityRenderDispatcher;Z)V", at = @At(value = "RETURN"))
     private void mixin(EntityRenderDispatcher dispatcher, boolean bl, CallbackInfo ci) {
 
-     //   this.addFeature(new PlayerUnusualParticlesFeature(this));
+        //   this.addFeature(new PlayerUnusualParticlesFeature(this));
 
     }
 
