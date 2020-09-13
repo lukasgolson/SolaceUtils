@@ -1,4 +1,4 @@
-package com.greyblockgames.solaceutils.mixins;
+package com.greyblockgames.solaceutils.mixins.entities;
 
 import com.greyblockgames.solaceutils.Access.PlayerEntityAccess;
 import com.greyblockgames.solaceutils.SolaceUtils;
