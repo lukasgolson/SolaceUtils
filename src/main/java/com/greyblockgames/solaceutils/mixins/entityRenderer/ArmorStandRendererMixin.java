@@ -14,8 +14,8 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(ArmorStandRenderer.class)
-public abstract class ArmorStandEntityRendererMixin extends LivingEntityRenderer<ArmorStand, ArmorStandArmorModel> {
-    public ArmorStandEntityRendererMixin(EntityRenderDispatcher dispatcher, ArmorStandArmorModel model, float shadowRadius) {
+public abstract class ArmorStandRendererMixin extends LivingEntityRenderer<ArmorStand, ArmorStandArmorModel> {
+    public ArmorStandRendererMixin(EntityRenderDispatcher dispatcher, ArmorStandArmorModel model, float shadowRadius) {
         super(dispatcher, model, shadowRadius);
     }
 

@@ -15,11 +15,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Environment(EnvType.CLIENT)
 @Mixin(ArmorStandModel.class)
-public abstract class ArmorStandEntityModelMixin extends ArmorStandArmorModel implements ArmorStandEntityModelAccess {
+public abstract class ArmorStandModelMixin extends ArmorStandArmorModel implements ArmorStandEntityModelAccess {
 
     private ModelPart GBG_Cape = null;
 
-    public ArmorStandEntityModelMixin(float f) {
+    public ArmorStandModelMixin(float f) {
         super(f);
     }
 
