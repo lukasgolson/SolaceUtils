@@ -6,12 +6,12 @@
     "defaultRequire": 1
   },
   "client": [
-    "PlayerListEntryMixin",
+    "PlayerInfoMixin",
     "entities.PlayerEntityMixin",
-    "entityRenderer.ArmorStandEntityRendererMixin",
-    "entityRenderer.PlayerEntityRendererMixin",
+    "entityRenderer.ArmorStandRendererMixin",
+    "entityRenderer.PlayerRendererMixin",
     "featureRenderers.CapeLayerMixin",
     "featureRenderers.Deadmau5EarsLayerMixin",
-    "model.ArmorStandEntityModelMixin"
+    "model.ArmorStandModelMixin"
   ]
 }

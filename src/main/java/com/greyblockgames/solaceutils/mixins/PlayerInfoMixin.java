@@ -18,7 +18,7 @@ import java.util.Map;
 
 
 @Mixin(PlayerInfo.class)
-public abstract class PlayerListEntryMixin {
+public abstract class PlayerInfoMixin {
 
     @Accessor("textureLocations")
     public abstract Map<MinecraftProfileTexture.Type, ResourceLocation> gettextureLocations();
