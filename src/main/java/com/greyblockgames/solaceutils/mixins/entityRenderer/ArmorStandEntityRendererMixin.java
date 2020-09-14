@@ -7,7 +7,6 @@ import net.minecraft.client.render.entity.ArmorStandEntityRenderer;
 import net.minecraft.client.render.entity.EntityRenderDispatcher;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.client.render.entity.model.ArmorStandArmorEntityModel;
-import net.minecraft.client.render.entity.model.ArmorStandEntityModel;
 import net.minecraft.entity.decoration.ArmorStandEntity;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

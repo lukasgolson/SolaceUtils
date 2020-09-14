@@ -25,18 +25,16 @@ public abstract class ArmorStandEntityModelMixin extends ArmorStandArmorEntityMo
     }
 
 
-
-
-    @Inject(method = "<init>(F)V",  at = @At(value = "RETURN"))
+    @Inject(method = "<init>(F)V", at = @At(value = "RETURN"))
     public void mixin(float f, CallbackInfo ci) {
         this.GBG_Cape = new ModelPart(this, 0, 0);
         this.GBG_Cape.setTextureSize(64, 32);
         this.GBG_Cape.addCuboid(-5.0F, 0.0F, -1.0F, 10.0F, 16.0F, 1.0F, f);
     }
 
-    @Inject(method = "getBodyParts()Ljava/lang/Iterable;",  at = @At(value = "RETURN"))
-   public void getBodyPartsMixin(CallbackInfoReturnable<Iterable<ModelPart>> cir) {
-    
+    @Inject(method = "getBodyParts()Ljava/lang/Iterable;", at = @At(value = "RETURN"))
+    public void getBodyPartsMixin(CallbackInfoReturnable<Iterable<ModelPart>> cir) {
+
     }
 
 

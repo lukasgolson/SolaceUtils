@@ -31,45 +31,58 @@ public class ArmorStandCapeFeatureRenderer extends FeatureRenderer<ArmorStandEnt
 
     @Override
     public void render(MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, ArmorStandEntity entity, float limbAngle, float limbDistance, float tickDelta, float animationProgress, float headYaw, float headPitch) {
-        if (!entity.isInvisible()) {
+
+        if (!entity.isInvisible() && entity.hasCustomName()) {
+
             ItemStack itemStack = entity.getEquippedStack(EquipmentSlot.CHEST);
             if (itemStack.getItem() != Items.ELYTRA) {
-                matrices.push();
-                matrices.translate(0.0D, 0.0D, 0.125D);
 
-                double d = 0;
-                double e = 0;
-                double m = 0;
+                String[] entityName = entity.getCustomName().asString().trim().split(":", 2);
+                if (entityName[0].equals("SU")) {
 
 
-                float n = entity.prevBodyYaw + (entity.bodyYaw - entity.prevBodyYaw);
-                double o = (double) MathHelper.sin(n * 0.017453292F);
-                double p = (double) (-MathHelper.cos(n * 0.017453292F));
-                float q = (float) e * 10.0F;
-                q = MathHelper.clamp(q, -6.0F, 32.0F);
-                float r = (float) (d * o + m * p) * 100.0F;
-                r = MathHelper.clamp(r, 0.0F, 150.0F);
-                float s = (float) (d * p - m * o) * 100.0F;
-                s = MathHelper.clamp(s, -20.0F, 20.0F);
-                if (r < 0.0F) {
-                    r = 0.0F;
+                    if (SolaceUtils.cosmeticsData.capeList.containsKey(entityName[1])) {
+
+                        Identifier identifier = new Identifier(SolaceUtils.MODID, "textures/capes/" + entityName[1] + ".png");
+
+                        matrices.push();
+                        matrices.translate(0.0D, 0.0D, 0.125D);
+
+                        final double d = 0;
+                        final double e = 0;
+                        final double m = 0;
+
+                        float n = entity.prevBodyYaw + (entity.bodyYaw - entity.prevBodyYaw);
+                        double o = MathHelper.sin(n * 0.017453292F);
+                        double p = -MathHelper.cos(n * 0.017453292F);
+                        float q = (float) e * 10.0F;
+                        q = MathHelper.clamp(q, -6.0F, 32.0F);
+                        float r = (float) (d * o + m * p) * 100.0F;
+                        r = MathHelper.clamp(r, 0.0F, 150.0F);
+                        float s = (float) (d * p - m * o) * 100.0F;
+                        s = MathHelper.clamp(s, -20.0F, 20.0F);
+                        if (r < 0.0F) {
+                            r = 0.0F;
+                        }
+
+                        float t = MathHelper.lerp(tickDelta, entity.lastLimbDistance, entity.limbDistance);
+                        q += MathHelper.sin(MathHelper.lerp(tickDelta, entity.prevHorizontalSpeed, entity.horizontalSpeed) * 6.0F) * 32.0F * t;
+                        if (entity.isInSneakingPose()) {
+                            q += 25.0F;
+                        }
+
+
+                        matrices.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(6.0F + r / 2.0F + q));
+                        matrices.multiply(Vector3f.POSITIVE_Z.getDegreesQuaternion(s / 2.0F));
+                        matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(180.0F - s / 2.0F));
+                        VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(identifier));
+
+                        ((ArmorStandEntityModelAccess) this.getContextModel()).GBG_renderCape(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
+                        matrices.pop();
+                    }
                 }
-
-                float t = MathHelper.lerp(tickDelta, entity.lastLimbDistance, entity.limbDistance);
-                q += MathHelper.sin(MathHelper.lerp(tickDelta, entity.prevHorizontalSpeed, entity.horizontalSpeed) * 6.0F) * 32.0F * t;
-                if (entity.isInSneakingPose()) {
-                    q += 25.0F;
-                }
-
-
-                matrices.multiply(Vector3f.POSITIVE_X.getDegreesQuaternion(6.0F + r / 2.0F + q));
-                matrices.multiply(Vector3f.POSITIVE_Z.getDegreesQuaternion(s / 2.0F));
-                matrices.multiply(Vector3f.POSITIVE_Y.getDegreesQuaternion(180.0F - s / 2.0F));
-                VertexConsumer vertexConsumer = vertexConsumers.getBuffer(RenderLayer.getEntityTranslucent(new Identifier(SolaceUtils.MODID, "textures/capes/admin.png")));
-
-                ((ArmorStandEntityModelAccess) ((ArmorStandEntityModel) this.getContextModel())).GBG_renderCape(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
-                matrices.pop();
             }
         }
     }
 }
+
