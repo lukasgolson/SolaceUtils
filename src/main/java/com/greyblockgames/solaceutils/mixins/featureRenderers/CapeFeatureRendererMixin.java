@@ -1,4 +1,4 @@
-package com.greyblockgames.solaceutils.mixins;
+package com.greyblockgames.solaceutils.mixins.featureRenderers;
 
 
 import net.fabricmc.api.EnvType;

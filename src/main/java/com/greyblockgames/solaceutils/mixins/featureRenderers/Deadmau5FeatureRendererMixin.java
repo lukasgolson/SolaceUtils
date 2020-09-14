@@ -1,4 +1,4 @@
-package com.greyblockgames.solaceutils.mixins;
+package com.greyblockgames.solaceutils.mixins.featureRenderers;
 
 import com.greyblockgames.solaceutils.Access.PlayerEntityAccess;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
