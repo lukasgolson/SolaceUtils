@@ -1,11 +1,11 @@
 package com.greyblockgames.solaceutils.data;
 
 import com.google.gson.*;
-import net.minecraft.client.util.math.Vector3d;
-import net.minecraft.particle.DefaultParticleType;
-import net.minecraft.particle.ParticleType;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import com.mojang.math.Vector3d;
+import net.minecraft.core.Registry;
+import net.minecraft.core.particles.ParticleType;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.resources.ResourceLocation;
 
 import java.lang.reflect.Type;
 
@@ -21,7 +21,7 @@ public class GSONSerializers {
         jsonObject.addProperty("velZ", src.getVelocity().z);
 
 
-        jsonObject.addProperty("particleType", Registry.PARTICLE_TYPE.getId(src.getParticleEffect().getType()).toString());
+        jsonObject.addProperty("particleType", Registry.PARTICLE_TYPE.getKey(src.getParticleEffect().getType()).toString());
         return jsonObject;
     };
 
@@ -37,9 +37,9 @@ public class GSONSerializers {
             double vecz = jsonObject.get("velZ").getAsDouble();
 
             String[] IDParts = jsonObject.get("particleType").getAsString().split(":", 2);
-            ParticleType<? extends net.minecraft.particle.ParticleEffect> effect = Registry.PARTICLE_TYPE.get(new Identifier(IDParts[0], IDParts[1]));
+            ParticleType<? extends net.minecraft.core.particles.ParticleOptions> effect = Registry.PARTICLE_TYPE.get(new ResourceLocation(IDParts[0], IDParts[1]));
 
-            return new UnusualEffectData(rate, height, radius, new Vector3d(vecx, vecy, vecz), (DefaultParticleType) effect);
+            return new UnusualEffectData(rate, height, radius, new Vector3d(vecx, vecy, vecz), (SimpleParticleType) effect);
         }
     };
 

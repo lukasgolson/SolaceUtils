@@ -10,8 +10,8 @@
     "entities.PlayerEntityMixin",
     "entityRenderer.ArmorStandEntityRendererMixin",
     "entityRenderer.PlayerEntityRendererMixin",
-    "featureRenderers.CapeFeatureRendererMixin",
-    "featureRenderers.Deadmau5FeatureRendererMixin",
+    "featureRenderers.CapeLayerMixin",
+    "featureRenderers.Deadmau5EarsLayerMixin",
     "model.ArmorStandEntityModelMixin"
   ]
 }

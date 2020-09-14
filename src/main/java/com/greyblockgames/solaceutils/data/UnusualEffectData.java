@@ -1,17 +1,17 @@
 package com.greyblockgames.solaceutils.data;
 
-import net.minecraft.client.util.math.Vector3d;
-import net.minecraft.particle.ParticleEffect;
+import com.mojang.math.Vector3d;
+import net.minecraft.core.particles.ParticleOptions;
 
 public class UnusualEffectData {
     private final int spawnRate;
     private final double heightScale;
     private final double radius;
     private final Vector3d vel;
-    private final ParticleEffect particleEffect;
+    private final ParticleOptions particleEffect;
 
 
-    public UnusualEffectData(int spawnRate, double heightScale, double radius, Vector3d velocity, ParticleEffect particleEffect) {
+    public UnusualEffectData(int spawnRate, double heightScale, double radius, Vector3d velocity, ParticleOptions particleEffect) {
         this.spawnRate = spawnRate;
         this.heightScale = heightScale;
         this.radius = radius;
@@ -35,7 +35,7 @@ public class UnusualEffectData {
         return vel;
     }
 
-    public ParticleEffect getParticleEffect() {
+    public ParticleOptions getParticleEffect() {
         return particleEffect;
     }
 
