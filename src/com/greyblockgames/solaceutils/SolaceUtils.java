@@ -6,12 +6,12 @@ import com.google.gson.GsonBuilder;
 import com.greyblockgames.solaceutils.data.CapeData;
 import com.greyblockgames.solaceutils.data.CosmeticsData;
 import com.greyblockgames.solaceutils.data.UnusualEffectData;
-import com.mojang.math.Vector3d;
 import net.devtech.arrp.api.RRPCallback;
 import net.devtech.arrp.api.RuntimeResourcePack;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.util.math.Vector3d;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -77,7 +77,7 @@ public class SolaceUtils implements ModInitializer {
 
             try {
                 URL url = new URL(entry.getValue().getUrl());
-                RESOURCE_PACK.addTexture(new ResourceLocation(MODID, "capes/" + entry.getKey().toLowerCase(Locale.ROOT).replaceAll(" ", "_")), ImageIO.read(url));
+                RESOURCE_PACK.addTexture(new Identifier(MODID, "capes/" + entry.getKey().toLowerCase(Locale.ROOT).replaceAll(" ", "_")), ImageIO.read(url));
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

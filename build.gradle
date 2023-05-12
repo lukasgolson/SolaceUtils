@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '0.5-SNAPSHOT'
+    id 'fabric-loom' version '0.10-SNAPSHOT'
     id 'maven-publish'
 }
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -18,13 +18,12 @@ repositories {
 
 
 dependencies {
-    minecraft "com.mojang:minecraft:1.16.3"
-    //mappings "net.fabricmc:yarn:1.16.3+build.7:v2"
-	mappings minecraft.officialMojangMappings()
-    modImplementation "net.fabricmc:fabric-loader:0.9.3+build.207"
+    minecraft "com.mojang:minecraft:1.18.1"
+    mappings "net.fabricmc:yarn:1.18.1+build.11:v2"
+    modImplementation "net.fabricmc:fabric-loader:0.12.12"
             
     //Fabric api
-    modImplementation "net.fabricmc.fabric-api:fabric-api:0.20.2+build.402-1.16"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:0.45.0+1.18"
 	
 	//ARRP
 	modImplementation group: 'net.devtech', name: 'arrp', version: '0.2.6'
